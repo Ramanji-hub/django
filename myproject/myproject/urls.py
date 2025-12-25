@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from basic.views import getStudentById,getMovieTickets,createEmployee,own,createproduct,createData,home,about,sample,sample1,sample2,sample3,sample4,sample5,sample6,productInfo_default,filteringData,filterStudentsByCity,pagination, BookMyshow
+from basic.views import student_reg,Stu_Reg,getStudentById,getMovieTickets,createEmployee,own,createproduct,createData,home,about,sample,sample1,sample2,sample3,sample4,sample5,sample6,productInfo_default,filteringData,filterStudentsByCity,pagination, BookMyshow
 
 
 urlpatterns = [
@@ -39,9 +39,7 @@ urlpatterns = [
     path("emp/",createEmployee),
     path("bookticket/",BookMyshow),
     path("getMovieTickets/",getMovieTickets),
-    path("getstudent/<int:id>",getStudentById)
-   
-
-    
-    
+    path("getstudent/<int:id>",getStudentById),
+    path("stu_reg/",Stu_Reg),
+    path("student_reg/",student_reg)
 ]

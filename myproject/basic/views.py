@@ -3,7 +3,7 @@ from django.http import HttpResponse,JsonResponse
 import math
 import json
 from django.views.decorators.csrf import csrf_exempt
-from basic.models import userprofile,Employee,MovieBooking
+from basic.models import userprofile,Employee,MovieBooking,CourseRegistration
 
 
 
@@ -176,6 +176,18 @@ def BookMyshow(request):
         return JsonResponse({"status":"failure","message":"only post method allowed"})
     except Exception as e:
         return JsonResponse({"status":"error","message": str(e)}, status=500)
+    
+
+@csrf_exempt
+def Stu_Reg(request):
+    try:
+        if request.method=="POST":
+            data=json.loads(request.body)
+            CourseRegistration.objects.create(name=data["Name"],email=data["Email"],course=data["Course"],phone=data["Phone"])
+            return JsonResponse({"status":"success","msg":"Registration succesfully"})
+        return JsonResponse({"status":"failed","msg":"only post method allowed"})
+    except Exception as e:
+        return JsonResponse({"status":"error","msg":str(e)}, status=500)
 
 #path parameters
 
@@ -186,4 +198,15 @@ def getStudentById(request,id):
         if id==student['id']:
             filteredStudent.append(student)
     return JsonResponse({"data":filteredStudent})
+
+def student_reg(request):
+    try:
+        if request.method=="GET":
+            result=list(CourseRegistration.objects.values())
+            print(result)
+
+            return JsonResponse({"status":"success","message":"data retrived successfully","data":result})
+        return JsonResponse({"status":"failure","message":"only get method allowed"})
+    except Exception as e:
+        return JsonResponse({"message":"Something went wrong"})
 
