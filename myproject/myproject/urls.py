@@ -15,7 +15,33 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from basic.views import getStudentById,getMovieTickets,createEmployee,own,createproduct,createData,home,about,sample,sample1,sample2,sample3,sample4,sample5,sample6,productInfo_default,filteringData,filterStudentsByCity,pagination, BookMyshow
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/',home,name='home'),
+    path('about/',about,name='about'),
+    path('sample/',sample),
+    path('sample1/',sample1),
+    path('sample2/',sample2),
+    path('sample3/',sample3),
+    path('sample4/',sample4),
+    path('sample5/',sample5),
+    path('sample6/',sample6),
+    path('productInfo_default/',productInfo_default),
+    path('filtering/',filteringData),
+    path('student/',filterStudentsByCity),
+    path('pagination/',pagination),
+    path('create/',createData),
+    path('createproduct/',createproduct),
+    path('own/',own),
+    path("emp/",createEmployee),
+    path("bookticket/",BookMyshow),
+    path("getMovieTickets/",getMovieTickets),
+    path("getstudent/<int:id>",getStudentById)
+   
+
+    
+    
 ]
